@@ -4,6 +4,7 @@
   max-width: 100%;
 }
 
+
 .myProfile, .titleChat,.userKeyboard{
   height: 80px;
 }
@@ -11,6 +12,7 @@
   height: 60px;
   width: 60px;
 }
+
 
 .searchChat{
   height: 60px;
@@ -22,20 +24,38 @@
   margin-left: 60px;
 }
 
+
 .privatesChat img{
   height: 90px;
   width: 90px;
 }
+
 
 .chatOptions i{
   padding: 5px;
   line-height: 2;
 }
 
+
 .containChat{
   background-image: linear-gradient(to right, #c1d9de, #aed5de, #99d1de, #82cdde, #68c9de);
   height: 628px;
+  overflow-y: scroll;
 }
+.containChat div{
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10%;
+}
+.sendbyCPU{
+  float: left;
+  background-color: white;
+}
+.sendbyUser{
+  float: right;
+  background-color: green;
+}
+
 
 .userKeyboard{
   background-color: #cecece;
