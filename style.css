@@ -1,0 +1,28 @@
+.container{
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+}
+
+.myProfile{
+  height: 80px;
+}
+.myProfile img{
+  height: 60px;
+  width: 60px;
+}
+
+.searchChat{
+  height: 60px;
+}
+.searchChat i{
+  margin-left: 40px;
+}
+.searchChat div{
+  margin-left: 60px;
+}
+
+.privatesChat img{
+  height: 90px;
+  width: 90px;
+}
