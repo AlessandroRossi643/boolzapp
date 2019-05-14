@@ -4,10 +4,10 @@
   max-width: 100%;
 }
 
-.myProfile{
+.myProfile, .titleChat,.userKeyboard{
   height: 80px;
 }
-.myProfile img{
+.myProfile img, .titleChat img{
   height: 60px;
   width: 60px;
 }
@@ -25,4 +25,22 @@
 .privatesChat img{
   height: 90px;
   width: 90px;
+}
+
+.chatOptions i{
+  padding: 5px;
+  line-height: 2;
+}
+
+.containChat{
+  background-image: linear-gradient(to right, #c1d9de, #aed5de, #99d1de, #82cdde, #68c9de);
+  height: 628px;
+}
+
+.userKeyboard{
+  background-color: #cecece;
+}
+.userKeyboard input{
+  width: 80%;
+  padding: 6px;
 }
