@@ -22,20 +22,44 @@ function textMessageUser(){
 };
 
 
-
 function textReplyCpu(messaggio){
   $('.userKeyboard').keydown(function(event){
     var key = (event.keyCode ? event.keyCode : event.which)
     var reply;
     if (key==13){
+
+      //Creo una variabile collegata ad una funzione temporale che si attiva dopo due secondi
        reply = setTimeout(function(){
 
          var textCpu=$("<p></p>").text("Ok");
          $(textCpu).addClass("sendbyCPU");
-         $(".conversation").append(textCpu); }, 3000);
+         $(".conversation").append(textCpu); }, 2000);
     }
+  });
+};
+
+
+function searchChat(){
+  $('.search').click(function(){
+    $('.privatesChat').toggle();
+    ricercaNome();
+  });
+};
+
+function ricercaNome(){
+  $('.search').keypress(function(){
+    var lettere=($(this).val());
+    console.log(lettere);
+
+    $('.name').each(function(){
+      if($(this).text().includes(lettere)){
+        $(this.parent).toggle();
+      }
+    })
+
   });
 };
 
 textMessageUser();
 textReplyCpu();
+searchChat();
