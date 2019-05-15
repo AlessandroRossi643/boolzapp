@@ -72,19 +72,26 @@ body{
 ::-webkit-scrollbar {
     display: none;
 }
-.containChat div{
-  margin: 10px;
+.containChat p{
   padding: 10px;
   border-radius: 10%;
-  min-width: 40px;
+  max-width:75%;
+  display:flex;
+}
+.containChat p:first-of-type{
+  margin-top: 20px;
+}
+.conversation{
+  width: 80%;
+  margin: 0 auto;
 }
 .sendbyCPU{
-  float: left;
   background-color: white;
+  align-self: flex-start;
 }
 .sendbyUser{
-  float: right;
   background-color: #dcf8c6;
+  align-self: flex-end;
 }
 
 
@@ -96,7 +103,6 @@ body{
   padding: 6px;
   border: none;
   border-radius: 10%;
-
 }
 .userKeyboard i{
   font-size: 25px;
