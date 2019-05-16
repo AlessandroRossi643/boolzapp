@@ -123,6 +123,17 @@ header{
   left: 5px;
   margin-bottom: 5px;
 }
+.dropdown-menu{
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  display: none;
+  width: 200px;
+  height: 100px;
+  background-color: white;
+  padding: 10px;
+}
+
 
 /* BARRA DOVE SI SCRIVE IL MESSAGGIO */
 .userKeyboard{

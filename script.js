@@ -2,7 +2,16 @@ $(document).ready(function(){
 
   // Creo una variabile che mi permette di avere l'ora e i minuti precisi da mettere nei messaggi
   var time= new Date();
-  var ora= time.getHours()+":"+ time.getMinutes();
+  var hours=aggiungiZero(time.getHours());
+  var minutes=aggiungiZero(time.getMinutes());
+  var ora= hours+":"+ minutes;
+  // Funzione che uso per inserire lo zero davanti al numero nel caso i minuti o le ore siano minori di 10
+  function aggiungiZero(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+  }
 
   // Funzione che mi permette di inviare un messaggio sullo schermo da parte dell'utente
   function inviaMessaggioUtente(){
@@ -46,6 +55,8 @@ $(document).ready(function(){
     $(".conversation").append(templateMsg);
   }
 
+  // Funzione che mi permette di ricercare un contatto nella lista, verificando che nell'attributo di ogni chat
+  // privata ci sia almeno una lettera scritta nell'input
   function ricercaContatto(){
     $('.search').keyup(function(event){
       var cerca_Nome=$('.search').val().toLowerCase();
@@ -61,5 +72,24 @@ $(document).ready(function(){
     });
   }
 
+  function mostraContatto(){
+    $('.privateChat').click(function(){
+      var foto=$(this).find("img").attr('src');
+      var nome=$(this).find('.name').text();
+      $('.titleChat img').attr('src',foto);
+      $('.namec').text(nome);
+
+      var testo_messaggi=$('.text-message').text();
+    });
+  }
+
+  function cancellaMessaggio(){
+    $(document).on('click','.new-message',function(){
+      $('.dropdown-menu').addClass('d-block');
+    })
+  }
+
   ricercaContatto();
+  mostraContatto();
+  cancellaMessaggio();
 });
