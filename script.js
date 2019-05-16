@@ -1,57 +1,65 @@
 $(document).ready(function(){
 
-  function textMessageUser(){
-    // Funzione che si attivi al press del tasto invio (evento 13)
-    $('.userKeyboard').keydown(function(event){
-      // Dichiaro una variabile key con operatore condizionale, che fa partire la funzione al momento che la var risulta falsa
-      var key = (event.keyCode ? event.keyCode : event.which)
-      // Condizione per cui se l'evento è uguale a 13 quindi al click del tasto invio, la funzione può attivarsi
-      if (key==13) {
-        // Vado a prendere con l'attributo val l'input dell'utente
-        var text_user=($('.send').val());
-        // Controllo che l'utente abbia inserito qualcosa
-        if (text_user) {
-          // Creo un div con all'interno il testo scritto dall'utente
-          var textPage = $("<p></p>").text(text_user);
-          // Aggiungo la classe sendbyUser per dargli le caratteristiche giuste e uso l'append per inserirlo in fondo alla pagina html
-          $(textPage).addClass("sendbyUser");
-          $(".conversation").append(textPage);
+  // Creo una variabile che mi permette di avere l'ora e i minuti precisi da mettere nei messaggi
+  var time= new Date();
+  var ora= time.getHours()+":"+ time.getMinutes();
 
-          // Azzero il value dell'utente
-          text_user=($('.send').val(""));
-        }
+  // Funzione che mi permette di inviare un messaggio sullo schermo da parte dell'utente
+  function inviaMessaggioUtente(){
+    var text_user=($('.send').val());
+      if (text_user) { //la dicitura cosi senza condizione, stà a dire text_user=0
+        templateMsg = $(".template-message .new-message").clone()
+        templateMsg.find(".text-message").text(text_user);
+        templateMsg.find(".time-message").text(ora);
+        templateMsg.addClass("sendbyUser");
+        $(".conversation").append(templateMsg);
+        $(".send").val("");
+        setTimeout(stampaMessaggioCpu, 2000);
       }
-    });
-  };
-
-  function textReplyCpu(messaggio){
-    $('.userKeyboard').keydown(function(event){
-      var key = (event.keyCode ? event.keyCode : event.which)
-      var reply;
-      if (key==13){
-        //Creo una variabile collegata ad una funzione temporale che si attiva dopo due secondi
-         reply = setTimeout(function(){
-
-           var textCpu=$("<p></p>").text("Ok");
-           $(textCpu).addClass("sendbyCPU");
-           $(".conversation").append(textCpu); }, 2000);
-      }
-    });
-  };
+  }
 
 
-      $('.searchChat').click(function(){
-        var nomeCercato=$('.search').val();
-        $('.privatesChat').hide();
-        $('.name').each(function(){
-          if ($(this).text().toLowerCase()==nomeCercato.toLowerCase()) {
+  // Funzione che mi permette di inviare il messaggio dell'utente nel caso si prema il tasto Invio, cambiando anche l'icona vicino all'input
+  $('.send').keydown(function(event){
+    if (event.which==13) {
+      inviaMessaggioUtente();
+    }
+    else {
+      $('.userKeyboard i').addClass("fa-paper-plane");
+    }
+  });
+
+
+  // Funzione con cui vado a ricambiare l'icona una volta che la barra perde il focus
+  $(".send").focusout(function(){
+    $(".userKeyboard i").removeClass("fa-paper-plane");
+  });
+
+
+  // Funzione che mi permette di ottenere la risposta dell'utente
+  function stampaMessaggioCpu(messaggio){
+    templateMsg = $(".template-message .new-message").clone()
+    templateMsg.find(".text-message").text("Ok.");
+    templateMsg.find(".time-message").text(ora);
+    templateMsg.find(".info-message i").hide();
+    templateMsg.addClass("sendbyCPU");
+    $(".conversation").append(templateMsg);
+  }
+
+  function ricercaContatto(){
+    $('.search').keyup(function(event){
+      var cerca_Nome=$('.search').val().toLowerCase();
+      $('.privateChat').hide();
+      if (cerca_Nome.length>0) {
+        $('.privateChat').each(function(){
+          nomeCercato=$(this).attr("data-chat-name");
+          if (nomeCercato.includes(cerca_Nome)) {
             $(this).show();
-          };
+          }
         });
-      });
+      }
+    });
+  }
 
-
-  textMessageUser();
-  textReplyCpu();
-
+  ricercaContatto();
 });

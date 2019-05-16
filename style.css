@@ -1,3 +1,4 @@
+/* ELEMENTI BASE STRUTTURA */
 body{
   background-color: #d9dbd4;
 }
@@ -7,13 +8,15 @@ header{
   position: fixed;
   top: 0px;
   background-color: #10ac84;
-  height: 70px;
+  height: 90px;
 }
 .col-lg-8, .col-lg-4{
   height: 100%;
 }
 
 
+
+/* BARRA DEL PROFILO */
 .myProfile, .titleChat,.userKeyboard{
   height: 70px;
 }
@@ -30,16 +33,17 @@ header{
 }
 
 
+/* BARRA DI RICERCA CONTATTI */
 .searchChat{
   height: 60px;
   background-color: #f8f8f8;
-  padding: 5px;
+  padding-right: 15px;
 }
 .searchChat input{
   width: 95%;
   border: none;
   border-radius: 10px;
-  padding: 5px 35px;
+  padding: 5px 5px 5px 30px;
 }
 .searchChat::before{
   color: grey;
@@ -50,23 +54,27 @@ header{
   left: 20px;
 }
 
+
+/* CONTAINER CON LE CHAT */
 .container_Chat{
   overflow-y: scroll;
   height: 500px;
 }
-.container_Chat .privatesChat:last-child{
+.container_Chat .privateChat:last-child{
   border:none;
 }
-.privatesChat{
+.privateChat{
   padding: 15px;
   border-bottom: 1px solid #d9dbd4;
   height: 100px;
 }
-.privatesChat img{
+.privateChat img{
   height: 100%;
   width: auto;
 }
 
+
+/* BARRA DELLA CHAT APERTA */
 .openChat{
   border-left: 1px solid #d9dbd4;
 }
@@ -76,41 +84,47 @@ header{
   font-size: 20px;
 }
 
+
+/* CONVERSAZIONE DELLA CHAT APERTA */
 .containChat{
   background-image: url("http://i.imgur.com/6Pl4okH.jpg");
   overflow-y: scroll;
   height: 500px;
 }
-.containChat p{
-  padding: 10px;
-  border-radius: 10%;
-  min-width: 15%;
-  max-width:75%;
-  display:flex;
-  position: relative;
-}
-.containChat p:first-of-type{
-  margin-top: 20px;
-}
+
 .conversation{
   width: 80%;
   height: 100%;
 }
-.conversation p small{
-  position: absolute;
-  bottom: 10%;
-  right: 10%;
+
+.new-message{
+  border-radius: 10px;
+  min-width: 15%;
+  max-width:75%;
+  display:flex;
+  padding: 10px;
 }
-.sendbyCPU{
+.new-message.sendbyCPU{
   background-color: white;
   align-self: flex-start;
 }
-.sendbyUser{
+.new-message.sendbyUser{
   background-color: #dcf8c6;
   align-self: flex-end;
 }
 
+.text-message{
+  margin-right: 15px;
+}
+.info-message {
+  font-size: 10px;
+  position: relative;
+  top: 15px;
+  left: 5px;
+  margin-bottom: 5px;
+}
 
+/* BARRA DOVE SI SCRIVE IL MESSAGGIO */
 .userKeyboard{
   background-color: #f8f8f8;
 }
@@ -118,7 +132,7 @@ header{
   width: 80%;
   padding: 6px;
   border: none;
-  border-radius: 10%;
+  border-radius: 10px;
 }
 .userKeyboard i{
   font-size: 25px;
