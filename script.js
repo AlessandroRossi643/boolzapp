@@ -1,5 +1,25 @@
 $(document).ready(function(){
 
+  // for (var i = 0; i < conversazioni.length; i++) {
+  //   var conversazione_corrente = $('<div class="conversation"></div>');
+  //   conversazione_corrente.attr('data-chat-name',i)
+  //   if (i==0) {
+  //     conversazione_corrente.addClass('active');
+  //   }
+  //
+  //   var messaggi= conversazioni[i];
+  //
+  //   for (var j = 0; j < messaggi.length; j++) {
+  //     var messaggio_corrente = messaggi[j];
+  //     var nuovo_messaggio=$('.template-message .new-message').clone();
+  //     nuovo_messaggio.children('.text-message').text(messaggio_corrente.text);
+  //     nuovo_messaggio.children('.time-message').text(messaggio_corrente.time);
+  //     nuovo_messaggio.addClass(messaggio_corrente.type);
+  //     conversazione_corrente.append(nuovo_messaggio);
+  //   }
+  //   $('.conversation').append(conversazione_corrente);
+  //   console.log(nuovo_messaggio);
+  // }
   // Creo una variabile che mi permette di avere l'ora e i minuti precisi da mettere nei messaggi
   var time= new Date();
   var hours=aggiungiZero(time.getHours());
@@ -24,9 +44,11 @@ $(document).ready(function(){
         $(".conversation").append(templateMsg);
         $(".send").val("");
         setTimeout(stampaMessaggioCpu, 2000);
+
+        var pixelScroll=$('.containChat')[0].scrollHeight;
+        $(".containChat").scrollTop(pixelScroll);
       }
   }
-
 
   // Funzione che mi permette di inviare il messaggio dell'utente nel caso si prema il tasto Invio, cambiando anche l'icona vicino all'input
   $('.send').keydown(function(event){
@@ -53,43 +75,124 @@ $(document).ready(function(){
     templateMsg.find(".info-message i").hide();
     templateMsg.addClass("sendbyCPU");
     $(".conversation").append(templateMsg);
+
+    var pixelScroll=$('.containChat')[0].scrollHeight;
+    $(".containChat").scrollTop(pixelScroll);
   }
 
-  // Funzione che mi permette di ricercare un contatto nella lista, verificando che nell'attributo di ogni chat
-  // privata ci sia almeno una lettera scritta nell'input
-  function ricercaContatto(){
+  // Funzione che mi permette di cercare un contatto nella barra dei contatti
     $('.search').keyup(function(event){
-      var cerca_Nome=$('.search').val().toLowerCase();
-      $('.privateChat').hide();
-      if (cerca_Nome.length>0) {
+      var cerca_Nome=$(this).val().toLowerCase();
+
         $('.privateChat').each(function(){
-          nomeCercato=$(this).attr("data-chat-name");
+          var nomeCercato=$(this).find('.name').text().toLowerCase();
           if (nomeCercato.includes(cerca_Nome)) {
             $(this).show();
           }
+          else {
+            $(this).hide();
+          }
         });
-      }
-    });
-  }
 
-  function mostraContatto(){
+    });
+
+  // Funzione che mi permette di aprire un contatto della barra
     $('.privateChat').click(function(){
       var foto=$(this).find("img").attr('src');
       var nome=$(this).find('.name').text();
       $('.titleChat img').attr('src',foto);
       $('.namec').text(nome);
 
-      var testo_messaggi=$('.text-message').text();
+      // var conversazione=$(this).attr('data-chat-name');
+      // var schermata_conversazione=$('.[data-chat-name="'+conversazione+'"]');
+      // $('.conversation').removeClass('active');
+      // schermata_conversazione.addClass('active');
     });
-  }
 
-  function cancellaMessaggio(){
-    $(document).on('click','.new-message',function(){
-      $('.dropdown-menu').addClass('d-block');
-    })
-  }
 
-  ricercaContatto();
-  mostraContatto();
-  cancellaMessaggio();
 });
+
+  // Lista Conversazioni
+  var conversazioni = [
+    // Conversazione 1
+    [
+      {
+        'text': 'Tripla doppia ieri sera??',
+        'time': '17:41',
+        'type': 'sendbyUser'
+      },
+      {
+        'text': 'Yeah, Man',
+        'time': '19:02',
+        'type': 'sendbyCPU'
+      }
+    ],
+    // Conversazione 2
+    [
+      {
+        'text': 'Senti che flow questa roba',
+        'time': '17:50',
+        'type': 'sendbyCPU'
+      },
+      {
+        'text': 'https://www.youtube.com/watch?v=xg5RHC-4y-Q',
+        'time': '17:52',
+        'type': 'sendbyCPU'
+      },
+      {
+        'text': 'Una bomba!',
+        'time': '18:59',
+        'type': 'sendbyUser'
+      }
+    ],
+    // Conversazione 3
+    [
+      {
+        'text': 'Qua franto?',
+        'time': '18:32',
+        'type': 'sendbyCPU'
+      },
+      {
+        'text': 'a pra foco',
+        'time': '18:56',
+        'type': 'sendbyUser'
+      }
+    ],
+    // Conversazione 4
+    [
+      {
+        'text': 'Ndo sei?',
+        'time': '18:48',
+        'type': 'sendbyUser'
+      }
+    ],
+    // Conversazione 5
+    [
+      {
+        'text': 'GSW REIGN!',
+        'time': '17:20',
+        'type': 'sendbyCPU'
+      }
+    ],
+    // Conversazione 6
+    [
+      {
+        'text': 'Insegnami a combattere!',
+        'time': '10:20',
+        'type': 'sendbyUser'
+      },
+      {
+        'text': 'ti piacerebbe',
+        'time': '15:20',
+        'type': 'sendbyCPU'
+      },
+    ],
+      // Conversazione 7
+    [
+      {
+        'text': 'Ti aspetto a dressRosa',
+        'time': '9:40',
+        'type': 'sendbyUser'
+      }
+    ]
+  ];

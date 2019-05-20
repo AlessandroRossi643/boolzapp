@@ -88,21 +88,26 @@ header{
 /* CONVERSAZIONE DELLA CHAT APERTA */
 .containChat{
   background-image: url("http://i.imgur.com/6Pl4okH.jpg");
-  overflow-y: scroll;
   height: 500px;
+  overflow-y: scroll;
 }
 
 .conversation{
   width: 80%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
-
+.active{
+  display: block;
+}
 .new-message{
   border-radius: 10px;
   min-width: 15%;
   max-width:75%;
-  display:flex;
   padding: 10px;
+  margin: 15px 0;
+  position: relative;
 }
 .new-message.sendbyCPU{
   background-color: white;
@@ -112,7 +117,6 @@ header{
   background-color: #dcf8c6;
   align-self: flex-end;
 }
-
 .text-message{
   margin-right: 15px;
 }
@@ -123,17 +127,22 @@ header{
   left: 5px;
   margin-bottom: 5px;
 }
-.dropdown-menu{
-  position: absolute;
-  top: 40%;
-  left: 40%;
+.message-options{
   display: none;
-  width: 200px;
-  height: 100px;
-  background-color: white;
+	background: white;
+	box-shadow: 2px 2px 20px 1px;
+	position: absolute;
+	bottom: -110px;
+  right: 0;
+	width: 150px;
   padding: 10px;
 }
-
+.opzioni span{
+  cursor: pointer;
+  width: 50%;
+  padding: 5px;
+  text-align: center;
+}
 
 /* BARRA DOVE SI SCRIVE IL MESSAGGIO */
 .userKeyboard{
